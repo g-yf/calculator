@@ -12,17 +12,16 @@ def divide():
         form=request.form
         loan = float(form['numOne'])
         numPay = float(form['numTwo'])
-        year = float(form['numThree'])
-        rate = float(form['numFour'])
-        period = float(form['numFive'])
-        n=numPay*year
-        i=rate/period
+        rate = float(form['numThree'])
+        n=numPay*12
+        i=rate/12
         a= 1+ i
         b=a**n
         c = b-1
         d = c/(i *b)
         calc = loan/d
-        return render_template('index.html', display=calc, pageTitle='My Calculator')
+        result = "Monthly payment is: ${0:6.2f}".format (calc)
+        return render_template('index.html', display=result, pageTitle='My Calculator')
 
     return redirect("/")
 
